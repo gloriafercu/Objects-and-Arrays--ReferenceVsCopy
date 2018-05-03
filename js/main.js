@@ -11,11 +11,11 @@ console.log(age, age2); // devuelve 200,100
 
 /* En el 1º caso asignamos a age2 el valor de age, en el 2º caso age cambia de valor pero age2 no cambia */
 
-let name = 'gloria';
+let name = 'Gloria';
 let name2 = name;
-console.log(name, name2);
-name = 'silvia';
-console.log(name, name2);
+console.log(name, name2); // devuelve Gloria, Gloria
+name = 'Javi';
+console.log(name, name2); // devuelve Javi, Gloria
 
 // Let's say we have an array
 const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
@@ -117,3 +117,82 @@ console.log(wes, dev);
 const dev2 = JSON.parse(JSON.stringify(wes));
 dev2.social.twitter = '@wesbos';
 console.log(wes, dev2);
+
+
+const names = ['Gloria', 'Javi', 'Ana'];
+const names2 = names;
+console.log(names, names2);
+// devuelve names = ['Gloria', 'Javi', 'Ana']
+//					names2 = ['Gloria', 'Javi', 'Ana']
+
+names2[2] = 'Sergio';
+console.log(names, names2);
+// devuelve names = ['Gloria', 'Javi', 'Sergio']
+//					names2 = ['Gloria', 'Javi', 'Sergio']
+
+const name2 = names.slice();
+names2[2] = 'Sergio';
+console.log(names, names2);
+// devuelve names = ['Gloria', 'Javi', 'Ana']
+//					names2 = ['Gloria', 'Javi', 'Sergio']
+
+const names = {
+	name: 'Gloria',
+	surname: 'Fernandez'
+}
+const names2 = names;
+console.log(names, names2); // son copias exactas
+
+names2.surname = 'Pérez';
+console.log(names, names2);
+/* devuelve const names = {
+										name: 'Gloria',
+										surname: 'Pérez'
+									}
+		devuelve const names2 = {
+											name: 'Gloria',
+											surname: 'Pérez'
+										}
+*/
+
+const names2 = Object.assign({}, names);
+names2.surname = 'Pérez';
+console.log(names, names2);
+/* devuelve const names = {
+										name: 'Gloria',
+										surname: 'Fernández'
+									}
+		devuelve const names2 = {
+											name: 'Gloria',
+											surname: 'Pérez'
+										}
+*/
+
+const names = {
+	name: 'Gloria',
+	surname: 'Fernandez'
+	social: {
+		twitter: '@bichito',
+		facebook: 'bichito2015'
+	}
+}
+const names2 = JSON.parse(JSON.stringify(names));
+names2.social.facebook = 'zarpitas';
+console.log(names, names2);
+/* devuelve const names = {
+										name: 'Gloria',
+										surname: 'Fernández'
+										social: {
+											twitter: '@bichito',
+											facebook: 'bichito2015'
+											}
+										}
+		devuelve const names2 = {
+											name: 'Gloria',
+											surname: 'Pérez'
+											social: {
+												twitter: '@bichito',
+												facebook: 'zarpitas'
+												}
+											}
+*/
